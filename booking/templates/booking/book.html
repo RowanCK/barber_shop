@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Appointment</title>
+</head>
+<body>
+    <h1>Book Your Haircut</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Confirm Booking</button>
+    </form>
+    
+    <br>
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>
