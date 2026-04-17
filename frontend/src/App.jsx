@@ -71,7 +71,7 @@ export default function App() {
       barber: selectedBarber.id 
     };
 
-    console.log("準備送出的預約資料：", payload);
+    console.log("Preparing booking data:", payload);
     
     fetch('http://127.0.0.1:8000/api/book/', {
       method: 'POST',

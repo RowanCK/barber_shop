@@ -9,21 +9,16 @@ from .models import Barber, Appointment
 from .forms import AppointmentForm
 from .serializers import AppointmentSerializer, BarberSerializer
 
-# ==========================================
-# 1. Modern API views (DRF CBVs) - for the React frontend
-# ==========================================
-
-# class BarberListAPI(APIView):
-#     """Handles the /api/barbers/ API."""
-
-#     def get(self, request):
-#         barbers = Barber.objects.all()
-#         serializer = BarberSerializer(barbers, many=True)
-#         return Response(serializer.data)
-
 class BarberListAPI(generics.ListAPIView):
     queryset = Barber.objects.all()
     serializer_class = BarberSerializer
+
+class CreateAppointmentAPI(generics.CreateAPIView):
+    serializer_class = AppointmentSerializer
+
+class AppointmentListAPI(generics.ListAPIView):
+    queryset = Appointment.objects.all().order_by('-id') 
+    serializer_class = AppointmentSerializer
 
 
 # class CreateAppointmentAPI(APIView):
@@ -36,15 +31,7 @@ class BarberListAPI(generics.ListAPIView):
 #             return Response(serializer.data, status=status.HTTP_201_CREATED)
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class CreateAppointmentAPI(generics.CreateAPIView):
-    serializer_class = AppointmentSerializer
 
-
-# ==========================================
-# 2. Traditional HTML views (built-in Django CBVs) - legacy server rendering
-# ==========================================
-
-# Inherit from TemplateView: used for views that only render HTML
 class HomeView(TemplateView):
     template_name = 'booking/home.html'
     
@@ -62,12 +49,3 @@ class BookAppointmentView(CreateView):
 
 class SuccessView(TemplateView):
     template_name = 'booking/success.html'
-
-
-# ==========================================
-# New: API for fetching all appointment records
-# ==========================================
-class AppointmentListAPI(generics.ListAPIView):
-    # .order_by('-id') puts the newest appointments first
-    queryset = Appointment.objects.all().order_by('-id') 
-    serializer_class = AppointmentSerializer

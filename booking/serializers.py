@@ -4,9 +4,9 @@ from .models import Appointment, Barber
 class BarberSerializer(serializers.ModelSerializer):
     class Meta:
         model = Barber
-        fields = '__all__'  # Include all fields of the Barber model in the serialized output
+        fields = '__all__'
 
 class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
-        fields = '__all__' # ['id', 'name', 'email', 'appointment_time', 'barber', 'membership']
+        fields = '__all__'
