@@ -1,8 +1,8 @@
 from rest_framework import status, generics
-from rest_framework.views import APIView # DRF 的基礎 CBV
+from rest_framework.views import APIView # Base DRF class-based view
 from rest_framework.response import Response
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, CreateView # Django 傳統網頁的 CBV
+from django.views.generic import TemplateView, CreateView # Django's traditional class-based views for server-rendered pages
 from django.urls import reverse_lazy
 
 from .models import Barber, Appointment
@@ -10,11 +10,11 @@ from .forms import AppointmentForm
 from .serializers import AppointmentSerializer, BarberSerializer
 
 # ==========================================
-# 1. 現代化 API 視圖 (DRF CBV) - 給 React 前端用的
+# 1. Modern API views (DRF CBVs) - for the React frontend
 # ==========================================
 
 # class BarberListAPI(APIView):
-#     """處理 /api/barbers/ 的 API"""
+#     """Handles the /api/barbers/ API."""
 
 #     def get(self, request):
 #         barbers = Barber.objects.all()
@@ -27,7 +27,7 @@ class BarberListAPI(generics.ListAPIView):
 
 
 # class CreateAppointmentAPI(APIView):
-#     """處理 /api/book/ 的 API"""
+#     """Handles the /api/book/ API."""
 
 #     def post(self, request):
 #         serializer = AppointmentSerializer(data=request.data)
@@ -41,33 +41,33 @@ class CreateAppointmentAPI(generics.CreateAPIView):
 
 
 # ==========================================
-# 2. 傳統 HTML 視圖 (Django 內建 CBV) - 舊版後端渲染
+# 2. Traditional HTML views (built-in Django CBVs) - legacy server rendering
 # ==========================================
 
-# 繼承 TemplateView：專門用來單純顯示 HTML 的視圖
+# Inherit from TemplateView: used for views that only render HTML
 class HomeView(TemplateView):
     template_name = 'booking/home.html'
     
-    # 透過覆寫 get_context_data 把資料庫的資料塞進 HTML 裡
+    # Override get_context_data to pass database data into the HTML context
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['barbers'] = Barber.objects.all()
         return context
 
-# 繼承 CreateView：它會自動幫你處理 GET (顯示空白表單) 和 POST (驗證並儲存表單)
+# Inherit from CreateView: it automatically handles GET (show empty form) and POST (validate and save form)
 class BookAppointmentView(CreateView):
     form_class = AppointmentForm
     template_name = 'booking/book.html'
-    success_url = reverse_lazy('appointment_success') # 儲存成功後自動跳轉
+    success_url = reverse_lazy('appointment_success') # Redirect automatically after a successful save
 
 class SuccessView(TemplateView):
     template_name = 'booking/success.html'
 
 
 # ==========================================
-# 新增：撈取所有預約紀錄的 API
+# New: API for fetching all appointment records
 # ==========================================
 class AppointmentListAPI(generics.ListAPIView):
-    # .order_by('-id') 讓最新的預約排在最上面
+    # .order_by('-id') puts the newest appointments first
     queryset = Appointment.objects.all().order_by('-id') 
     serializer_class = AppointmentSerializer

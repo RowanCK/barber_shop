@@ -1,47 +1,47 @@
 # =========================
 # Backend (Django / Python)
 # =========================
-# 虛擬環境
+# Virtual environments
 venv/
 env/
 
-# 編譯後的 Python 檔案
+# Compiled Python files
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# 本機資料庫 (不要把你的測試資料傳上去)
+# Local database (do not commit test data)
 db.sqlite3
 
-# 環境變數 (未來用來放密碼或 API Key 的地方)
+# Environment variables (for secrets or API keys)
 .env
 
 # =========================
 # Frontend (React / Vite)
 # =========================
-# Node 依賴套件 (這絕對不能傳！)
+# Node dependencies (never commit these)
 node_modules/
 frontend/node_modules/
 
-# Vite 編譯輸出的靜態檔案
+# Vite build output
 dist/
 dist-ssr/
 build/
 
-# 前端環境變數
+# Frontend environment variables
 .env.local
 .env.*.local
 
 # =========================
-# OS & 編輯器設定檔
+# OS & editor settings
 # =========================
-# Mac 系統隱藏檔
+# macOS hidden files
 .DS_Store
 
-# Windows 系統隱藏檔
+# Windows hidden files
 Thumbs.db
 
-# 編輯器設定檔
+# Editor settings
 .vscode/
 .idea/

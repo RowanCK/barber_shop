@@ -18,13 +18,13 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # --- 傳統 HTML 路由 ---
-    # 注意後面都加上了 .as_view()
+    # --- Traditional HTML routes ---
+    # Note that each class-based view uses .as_view()
     path('', views.HomeView.as_view(), name='home'),
     path('book/', views.BookAppointmentView.as_view(), name='book_appointment'),
     path('success/', views.SuccessView.as_view(), name='appointment_success'),
     
-    # --- 現代 API 路由 ---
+    # --- Modern API routes ---
     path('api/barbers/', views.BarberListAPI.as_view(), name='get_barbers'),
     path('api/book/', views.CreateAppointmentAPI.as_view(), name='create_appointment'),
     path('api/appointments/', views.AppointmentListAPI.as_view(), name='get_appointments'),

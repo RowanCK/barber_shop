@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
 export default function App() {
-  // 1. 儲存理髮師資料的狀態
+  // 1. State for barber data
   const [barbers, setBarbers] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  // 2. 記錄目前選中的頁籤 (預設為 'barbers')
+  // 2. Track the active tab (defaults to 'barbers')
   const [activeTab, setActiveTab] = useState('barbers'); 
 
-  // 3. 預約表單相關狀態
+  // 3. Booking form state
   const [selectedBarber, setSelectedBarber] = useState(null); 
   const [formData, setFormData] = useState({ name: '', email: '', appointment_time: '' }); 
   const [bookingSuccess, setBookingSuccess] = useState(false); 
 
-  // 🌟 4. 新增：預約紀錄管理狀態
+  // 4. Booking history management state
   const [appointments, setAppointments] = useState([]);
   const [loadingAppointments, setLoadingAppointments] = useState(false);
 
-  // 取得理髮師 API (元件掛載時執行一次)
+  // Fetch barbers once when the component mounts
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/barbers/')
       .then(response => response.json())
@@ -31,7 +31,7 @@ export default function App() {
       });
   }, []);
 
-  // 🌟 新增：取得預約紀錄 API (只有當 activeTab 切換為 'bookings' 時才執行)
+  // Fetch appointment history only when activeTab switches to 'bookings'
   useEffect(() => {
     if (activeTab === 'bookings') {
       setLoadingAppointments(true);
@@ -45,13 +45,13 @@ export default function App() {
     }
   }, [activeTab]);
 
-  // 處理表單輸入的改變
+  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // 處理表單送出 (真實 POST 請求)
+  // Handle form submission with a real POST request
   const handleBookingSubmit = (e) => {
     e.preventDefault();
     
@@ -79,10 +79,10 @@ export default function App() {
       console.log("Booking successful", data);
       setBookingSuccess(true);
       
-      // 🌟 新增：預約成功後，將新預約即時推入表格的最上方
+      // Add the new appointment to the top of the table immediately after a successful booking
       setAppointments(prev => [data, ...prev]);
       
-      // 兩秒後關閉視窗並清空表單
+      // Close the modal and reset the form after two seconds
       setTimeout(() => {
         setSelectedBarber(null); 
         setBookingSuccess(false); 
@@ -95,7 +95,7 @@ export default function App() {
     });
   };
 
-  // 🌟 新增：小幫手函式，將理髮師 ID 轉為姓名顯示在表格上
+  // Helper function: convert a barber ID to a display name for the table
   const getBarberName = (barberId) => {
     const barber = barbers.find(b => b.id === barberId);
     return barber ? barber.name : 'Unknown Barber';
@@ -104,7 +104,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#F8F9FA] font-sans pb-12 relative">
       
-      {/* 1. Hero Section (滿版橫幅) */}
+      {/* 1. Hero Section */}
       <div className="relative h-[200px] w-full bg-[url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center">
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
         <div className="absolute bottom-8 left-8 text-white">
@@ -120,7 +120,7 @@ export default function App() {
         </div>
       </div>
 
-      {/* 2. Navigation Tabs (導覽頁籤) */}
+      {/* 2. Navigation Tabs */}
       <div className="px-8 py-6 flex gap-3 overflow-x-auto">
         <button 
           onClick={() => setActiveTab('overview')}
@@ -147,7 +147,7 @@ export default function App() {
           Our Barbers
         </button>
         
-        {/* 🌟 新增：管理預約的頁籤 */}
+        {/* Added booking management tab */}
         <button 
           onClick={() => setActiveTab('bookings')}
           className={`px-6 py-2.5 rounded-full font-bold text-sm shadow-sm border transition duration-200 ${
@@ -158,7 +158,7 @@ export default function App() {
         </button>
       </div>
 
-      {/* 3. Main Content Card (主內容大卡片) */}
+      {/* 3. Main Content Card */}
       <div className="mx-8 bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-gray-100 min-h-[400px]">
         
         {/* Overview Tab */}
@@ -267,7 +267,7 @@ export default function App() {
           </div>
         )}
 
-        {/* 🌟 新增：My Bookings Tab (預約紀錄管理畫面) */}
+        {/* Added My Bookings tab */}
         {activeTab === 'bookings' && (
           <div className="animate-fade-in">
             <h2 className="text-3xl font-extrabold text-[#1E293B] mb-2">Upcoming Appointments</h2>
@@ -313,7 +313,7 @@ export default function App() {
         )}
       </div>
 
-      {/* 4. 預約彈出視窗 (Modal) */}
+      {/* 4. Booking modal */}
       {selectedBarber && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
           <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative">
