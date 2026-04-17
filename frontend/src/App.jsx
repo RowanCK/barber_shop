@@ -33,16 +33,27 @@ export default function App() {
 
   // Fetch appointment history only when activeTab switches to 'bookings'
   useEffect(() => {
-    if (activeTab === 'bookings') {
+    if (activeTab !== 'bookings') return; 
+
+    const fetchAppointmentsData = async () => {
       setLoadingAppointments(true);
-      fetch('http://127.0.0.1:8000/api/appointments/')
-        .then(response => response.json())
-        .then(data => {
-          setAppointments(data);
-          setLoadingAppointments(false);
-        })
-        .catch(error => console.error("Fetch appointments error:", error));
-    }
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/appointments/');
+        
+        if (!response.ok) throw new Error('Failed to fetch appointments with status ' + response.status);
+
+        const data = await response.json();
+        setAppointments(data);
+        
+      } catch (error) {
+        console.error("Fetch appointments error:", error);
+      } finally {
+        setLoadingAppointments(false);
+      }
+    };
+
+    fetchAppointmentsData();
+
   }, [activeTab]);
 
   // Handle form input changes
