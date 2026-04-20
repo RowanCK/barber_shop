@@ -10,7 +10,7 @@ I didn't want to overcomplicate the MVP, so I kept the scope focused on the core
 
 * Users can browse a list of barbers pulled from the backend.
 * Clicking a barber opens a form to select a date and time.
-* A "My Bookings" tab acts as a basic admin dashboard. It fetches and displays the raw appointment data from the SQLite database.
+* A "Bookings" tab acts as a basic admin dashboard. It fetches and displays the raw appointment data from the SQLite database.
 
 I used Tailwind CSS for the frontend. I went with a modern, slightly darker aesthetic that usually fits the industry well. The tab switching is handled by simple React state rather than full routing to keep the demo lightweight.
 
@@ -43,7 +43,7 @@ The app will run on `http://localhost:5173`.
 
 ## Thoughts and next steps
 
-This is an interview prototype, so there are obvious gaps. The biggest missing piece is authentication. Right now, anyone who clicks the "My Bookings" tab can see all appointments. In a real system, that endpoint needs to be locked down (probably with session auth or JWTs) so only shop staff can access it.
+This is an interview prototype, so there are obvious gaps. The biggest missing piece is authentication. Right now, anyone who clicks the "Bookings" tab can see all appointments. In a real system, that endpoint needs to be locked down (probably with session auth or JWTs) so only shop staff can access it.
 
 I also used the native HTML `datetime-local` input for picking appointment times. It works for a quick demo, but preventing double-booking on the backend would be my immediate next priority if I kept building this out.
 

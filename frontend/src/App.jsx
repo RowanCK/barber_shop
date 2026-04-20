@@ -168,7 +168,7 @@ export default function App() {
             activeTab === 'bookings' ? 'bg-[#3B82F6] text-white border-transparent shadow-blue-200' : 'bg-white text-slate-600 border-gray-200 hover:bg-gray-50'
           }`}
         >
-          📅 My Bookings
+          Bookings
         </button>
       </div>
 
@@ -281,7 +281,7 @@ export default function App() {
           </div>
         )}
 
-        {/* Added My Bookings tab */}
+        {/* Added Bookings tab */}
         {activeTab === 'bookings' && (
           <div className="animate-fade-in">
             <h2 className="text-3xl font-extrabold text-[#1E293B] mb-2">Upcoming Appointments</h2>
