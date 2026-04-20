@@ -41,11 +41,16 @@ The backend API will run on `http://127.0.0.1:8000`.
 
 The app will run on `http://localhost:5173`.
 
-## Thoughts and next steps
 
-This is an interview prototype, so there are obvious gaps. The biggest missing piece is authentication. Right now, anyone who clicks the "Bookings" tab can see all appointments. In a real system, that endpoint needs to be locked down (probably with session auth or JWTs) so only shop staff can access it.
+## Testing
+I implemented a comprehensive test suite for the backend using Django's built-in testing framework and APITestCase. The tests are separated into three distinct layers to ensure robust data integrity and API reliability:
+- Model Layer: Verifies database defaults (e.g., ensuring new appointments default to membership=False) and model string representations.
+- Serializer Layer: Tests data validation logic, ensuring the API rejects missing required fields (like a missing email address).
+- API Layer: Simulates real frontend requests (GET and POST) to the endpoints. It includes both positive test cases (successful creation) and negative test cases (verifying a 400 Bad Request is returned for invalid payloads).
 
-I also used the native HTML `datetime-local` input for picking appointment times. It works for a quick demo, but preventing double-booking on the backend would be my immediate next priority if I kept building this out.
+### To run the test suite locally:
+1. Navigate to the barber_shop directory.
+2. Run the following command: `python manage.py test booking`
 
 
 ## Results
@@ -71,6 +76,14 @@ I also used the native HTML `datetime-local` input for picking appointment times
 ### Administration
 
 <img width="1432" height="461" alt="image" src="https://github.com/user-attachments/assets/05459b38-ea1f-4bc9-b17c-0de019f11747" />
+
+
+## Thoughts and next steps
+
+This is an interview prototype, so there are obvious gaps. The biggest missing piece is authentication. Right now, anyone who clicks the "Bookings" tab can see all appointments. In a real system, that endpoint needs to be locked down (probably with session auth or JWTs) so only shop staff can access it.
+
+I also used the native HTML `datetime-local` input for picking appointment times. It works for a quick demo, but preventing double-booking on the backend would be my immediate next priority if I kept building this out.
+
 
 
 
