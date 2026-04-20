@@ -17,7 +17,7 @@ class CreateAppointmentAPI(generics.CreateAPIView):
     serializer_class = AppointmentSerializer
 
 class AppointmentListAPI(generics.ListAPIView):
-    queryset = Appointment.objects.all().order_by('-id') 
+    queryset = Appointment.objects.all().order_by('appointment_time') 
     serializer_class = AppointmentSerializer
 
 

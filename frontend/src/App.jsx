@@ -65,9 +65,12 @@ export default function App() {
   // Handle form submission with a real POST request
   const handleBookingSubmit = (e) => {
     e.preventDefault();
+
+    const localDate = new Date(formData.appointment_time);
     
     const payload = {
       ...formData,
+      appointment_time: localDate.toISOString(),
       barber: selectedBarber.id 
     };
 
