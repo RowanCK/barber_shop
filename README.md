@@ -52,19 +52,19 @@ I also used the native HTML `datetime-local` input for picking appointment times
 
 ### Basic UI
 
-<img width="2872" height="1532" alt="image" src="https://github.com/user-attachments/assets/ee2950b3-6d8f-4187-b4ff-041402058989" />
+<img width="2856" height="1556" alt="image" src="https://github.com/user-attachments/assets/f76357c0-cc93-4702-8ce4-b4a0602fee44" />
 
 ---
 
-<img width="2904" height="1270" alt="image" src="https://github.com/user-attachments/assets/2d0b8711-0f3a-4ec0-940c-18390ee9c6f8" />
+<img width="2890" height="1156" alt="image" src="https://github.com/user-attachments/assets/8a0c1814-6317-4ab6-9e39-9b6b56252d50" />
 
 ---
 
-<img width="2886" height="1136" alt="image" src="https://github.com/user-attachments/assets/6742cd2f-c026-402b-9378-fe5ab6e0b2b2" />
+<img width="2892" height="1104" alt="image" src="https://github.com/user-attachments/assets/ace87ba6-fea5-42f6-b87e-9fc455654588" />
 
 ---
 
-<img width="1706" height="1436" alt="image" src="https://github.com/user-attachments/assets/d0005804-204f-4b6c-8550-01b730cf4abc" />
+<img width="1662" height="1458" alt="image" src="https://github.com/user-attachments/assets/621adaef-b9a6-46d9-b83d-20334efbfcb1" />
 
 ---
 
