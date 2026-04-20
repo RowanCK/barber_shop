@@ -18,13 +18,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # --- Traditional HTML routes ---
-    # Note that each class-based view uses .as_view()
-    path('', views.HomeView.as_view(), name='home'),
-    path('book/', views.BookAppointmentView.as_view(), name='book_appointment'),
-    path('success/', views.SuccessView.as_view(), name='appointment_success'),
-    
-    # --- Modern API routes ---
     path('api/barbers/', views.BarberListAPI.as_view(), name='get_barbers'),
     path('api/book/', views.CreateAppointmentAPI.as_view(), name='create_appointment'),
     path('api/appointments/', views.AppointmentListAPI.as_view(), name='get_appointments'),
