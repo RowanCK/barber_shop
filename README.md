@@ -84,6 +84,9 @@ This is an interview prototype, so there are obvious gaps. The biggest missing p
 
 I also used the native HTML `datetime-local` input for picking appointment times. It works for a quick demo, but preventing double-booking on the backend would be my immediate next priority if I kept building this out.
 
+### Infrastructure & Deployment:
+
+If I were taking this further into a production SaaS environment, I’d containerize the applications with Docker and use Nginx for routing on AWS or GCP. Drawing from my backend experience, I would also set up a CI/CD pipeline (e.g., GitHub Actions) to automate the testing and deployment flow. Automating the test suite I built would save a lot of headaches during code reviews and ensure reliable releases as the platform scales.
 
 
 
